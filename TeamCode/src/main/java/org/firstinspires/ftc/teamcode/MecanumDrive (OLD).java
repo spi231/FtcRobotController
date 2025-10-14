@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/* package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -9,9 +9,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/*
+
  * This is code that will work with either a Mecanum Drive or an X-Drive with holonomic wheels.
-*/
+
 @TeleOp(name="OmniDrive", group="Linear OpMode")
 //@Disabled
 public class MecanumDrive extends LinearOpMode {
@@ -161,3 +161,5 @@ public class MecanumDrive extends LinearOpMode {
         }
     }
 }
+*/
+
