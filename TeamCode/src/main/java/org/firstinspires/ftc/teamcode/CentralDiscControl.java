@@ -18,18 +18,14 @@ public class CentralDiscControl extends LinearOpMode {
 
     // variables
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor armTilt2 = null;
-    private DcMotor armScissor = null;
-    private DcMotor armTilt = null;
-    private CRServo armSpin = null;
-    private boolean lockArmInClimb = false;
+    private DcMotor discControl = null;
 
     @Override
     public void runOpMode() {
 
         // Initialize the hardware variables. 
         // Names are the same as on the Control Hub. (and are semi-arbetrary)
-        discControl = hardwareMap.get(DcMotor.class, "armTilt2"); //expansion 0
+        discControl = hardwareMap.get(DcMotor.class, "discControl"); //expansion 0
 
         // reset the position of the disc, and set the proper motor function
         // this needs an encoder
