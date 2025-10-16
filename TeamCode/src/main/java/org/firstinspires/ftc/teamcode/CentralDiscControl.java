@@ -23,6 +23,10 @@ public class CentralDiscControl extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+/*
+THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
+*/
+
         // Initialize the hardware variables. 
         // Names are the same as on the Control Hub. (and are semi-arbetrary)
         discControl = hardwareMap.get(DcMotor.class, "discControl"); //expansion 0
