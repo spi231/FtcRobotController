@@ -23,10 +23,6 @@ public class CentralDiscControl extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-/*
-THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
-*/
-
         // Initialize the hardware variables. 
         // Names are the same as on the Control Hub. (and are semi-arbetrary)
         discControl = hardwareMap.get(DcMotor.class, "discControl"); //expansion 0
@@ -56,7 +52,9 @@ THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
 
-            // manual control
+            /*
+                THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
+            */
 
             // rotate counterclockwise
             if (gamepad1.x || gamepad1.y){
@@ -69,6 +67,8 @@ THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
                 rotations += 1;
                 discControl.setTargetPosition(1440 * (rotations/3));
             }
+
+            
 
         }
     }
