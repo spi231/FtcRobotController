@@ -36,7 +36,9 @@ public class CentralDiscControl extends LinearOpMode {
         discControl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // 1440 ticks per revolution
-        int rotations = 0;
+        int rotations = 77;
+        // to show which position of the three states the system is actually in
+        int absPosition = 0;
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -56,6 +58,18 @@ public class CentralDiscControl extends LinearOpMode {
                 THIS IS FOR THE MANUAL MODE ON THE CENTRAL DISK
             */
 
+           // to figure out the absolute position of the disk
+           absPosition = rotations;
+            if absPosition > 2 { // to get it between 0-2 if it is > 2
+                while absPosition > 2 {
+                    absPosition -= 3;
+                }
+            } elif absPosition < 0 { // to get it between 0-2 if it is < 0
+                whlie absPosition < 0 {
+                    absPosition += 3;
+                }
+            }
+            
             // rotate counterclockwise
             if (gamepad1.x || gamepad1.y){
                 rotations -= 1;
@@ -68,7 +82,7 @@ public class CentralDiscControl extends LinearOpMode {
                 discControl.setTargetPosition(1440 * (rotations/3));
             }
 
-            
+
 
         }
     }
