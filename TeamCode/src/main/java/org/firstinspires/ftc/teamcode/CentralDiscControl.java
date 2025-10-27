@@ -41,12 +41,22 @@ public class CentralDiscControl extends LinearOpMode {
         // to show which position of the three states the system is actually in
         int absPosition = 0;
         // GET THIS FROM THE APRIL TAG
-        // 0 being green, 1 being purple
         int[] posOrderCorrect = {0,0,1};
         // GET THIS FROM THE COLOR SENSOR (this shows what pattern is needed)
         int[] posOrderInitial = {1 ,0,0};
         // this will show the actual poisions (this shows what the sensors think)
         int[] posOrderCurrent = posOrderInitial;
+        // 0 being green, 1 being purple        
+        /*
+        all the order arrays look like this
+        1     2
+
+           0
+        */
+       int[] lastShot = posOrderCorrect;
+       // this will make sure the order of shots remains consistent
+       int nextShot = lastShot[0];
+       // this one is to make the rotation easier
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -92,6 +102,7 @@ public class CentralDiscControl extends LinearOpMode {
 
             /* FOR THE AUTOMATIC */
 
+            // to make sure the actual positions of the balls are properly recorded
             if (rotations % 3 = 0){ // first position
                 posOrderCurrent = posOrderInitial;
             } elif (rotations % 3 = 2){ // second position
@@ -103,6 +114,37 @@ public class CentralDiscControl extends LinearOpMode {
                 posOrderCurrent[1] = posOrderInitial[0];
                 posOrderCurrent[2] = posOrderInitial[1];
             }
+
+            // track what the prvious shots were so it can stay organized
+            if (lastShot[2] == posOrderCorrect[0]) { // 1 correct (shot 2)
+            nextShot = posOrderCorrect[1];
+            } elif (lastShot[1] == posOrderCorrect[0] && lastShot[2] == posOrderCorrect[1] ) { // 2 correct (shot 3)
+            nextShot = posOrderCorrect[2];   
+            } elif (lastShot[0] = posOrderCorrect[0] && lastShot[1] = posOrderCorrect[1] && lastShot[2] = posOrderCorrect[2]) { // 0 correct (shot 1)
+            nextShot = posOrderCorrect[0];
+            }
+
+            // lets say 2 is the launch position
+            // this will move the correct ball into the launch position
+            if (posOrderCurrent[2] != nextShot){
+                if (posOrderCurrent[0] == nextShot){
+                    // rotate counterclockwise
+                    rotations -= 1;
+                    discControl.setTargetPosition(motorSpeed * (rotations/3));
+                } elif (posOrderCurrent[1] == nextShot){
+                    // rotate clockwise
+                    rotations += 1;
+                    discControl.setTargetPosition(motorSpeed * (rotations/3));
+                }
+            }
+
+            // AFTER IT SHOOTS
+            // cycle last shot one
+            lastShot[0] = lastShot[1];
+            lastShot[1] = lastShot[2];
+            lastShot[2] = nextShot;
+
         }
     }
+
 }
