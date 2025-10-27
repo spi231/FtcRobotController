@@ -40,6 +40,13 @@ public class CentralDiscControl extends LinearOpMode {
         int rotations = 0;
         // to show which position of the three states the system is actually in
         int absPosition = 0;
+        // GET THIS FROM THE APRIL TAG
+        // 0 being green, 1 being purple
+        int[] posOrderCorrect = {0,0,1};
+        // GET THIS FROM THE COLOR SENSOR (this shows what pattern is needed)
+        int[] posOrderInitial = {1 ,0,0};
+        // this will show the actual poisions (this shows what the sensors think)
+        int[] posOrderCurrent = posOrderInitial;
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -83,8 +90,19 @@ public class CentralDiscControl extends LinearOpMode {
                 discControl.setTargetPosition(motorSpeed * (rotations/3));
             }
 
+            /* FOR THE AUTOMATIC */
 
-
+            if (rotations % 3 = 0){ // first position
+                posOrderCurrent = posOrderInitial;
+            } elif (rotations % 3 = 2){ // second position
+                posOrderCurrent[0] = posOrderInitial[1];
+                posOrderCurrent[1] = posOrderInitial[2];
+                posOrderCurrent[2] = posOrderInitial[0];
+            } elif (rotations % 3 = 1){ //third position
+                posOrderCurrent[0] = posOrderInitial[2];
+                posOrderCurrent[1] = posOrderInitial[0];
+                posOrderCurrent[2] = posOrderInitial[1];
+            }
         }
     }
 }
