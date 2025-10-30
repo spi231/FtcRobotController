@@ -36,7 +36,7 @@ public class CentralDiscControl extends LinearOpMode {
         discControl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // 1440 ticks per revolution
-        int motorSpeed = 1440;
+        int motorSpeed = 435;
         int rotations = 0;
         // to show which position of the three states the system is actually in
         int absPosition = 0;
