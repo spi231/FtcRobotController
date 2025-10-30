@@ -158,7 +158,7 @@ public class TestingCamera extends LinearOpMode {
 
         // Set the camera (webcam vs. built-in RC phone camera).
         if (USE_WEBCAM) {
-            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
+            builder.setCamera(hardwareMap.get(WebcamName.class, "Camera1"));
         } else {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
